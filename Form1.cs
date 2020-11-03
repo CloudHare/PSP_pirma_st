@@ -81,6 +81,7 @@ namespace PSP_pirma_st
             }
 
             price = packageDelivery.calculateDeliveryPrice(packDest, weight);
+            price = Math.Round(price, 2);
 
             packDestField.Text = packDest.ToString();
             weightField.Text = weight.ToString();
