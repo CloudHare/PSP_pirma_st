@@ -13,17 +13,15 @@ namespace PSP_pirma_st
 {
     public partial class Form1 : Form
     {
-        double price;
-
         FlightTicket flightTicket;
-        Destination flightDest;
-        FlightClass flightClass;
+        Document doc;
+        bool goodDocument;
         int luggage;
-        bool coffee;
+        double flightPrice;
 
         PackageDelivery packageDelivery;
-        Destination packDest;
         int weight;
+        double deliveryPrice;
 
         public Form1()
         {
@@ -32,60 +30,56 @@ namespace PSP_pirma_st
             flightTicket = new FlightTicket();
             packageDelivery = new PackageDelivery();
 
-            comboBox1.DataSource = Enum.GetValues(typeof(Destination));
-            comboBox3.DataSource = Enum.GetValues(typeof(Destination));
-            comboBox2.DataSource = Enum.GetValues(typeof(FlightClass));
-            
+            comboBox1.DataSource = Enum.GetValues(typeof(Document));
+
+            // Should I remove these?
+            flightDestField.Text = flightTicket.getDestination().ToString();
+            flightClassField.Text = flightTicket.getFlightClass().ToString();
+            deliveryDestField.Text = packageDelivery.getDestination().ToString();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            flightDest = (Destination)comboBox1.SelectedValue;
-            flightClass = (FlightClass)comboBox2.SelectedValue;
+            doc = (Document)comboBox1.SelectedValue;
 
-            price = flightTicket.calculatePrice(flightDest, flightClass);
-            price = Math.Round(price, 2);
-            luggage = flightTicket.calculateLuggage(flightClass);
-            coffee = flightTicket.isCoffeeIncluded(flightClass);
+            flightPrice = flightTicket.calculatePrice();
+            luggage = flightTicket.calculateLuggage();
+            goodDocument = flightTicket.goodDocument(doc);
 
-            flightDestField.Text = flightDest.ToString();
-            flightClassField.Text = flightClass.ToString();
-            flightPriceField.Text = price.ToString();
+            flightPriceField.Text = flightPrice.ToString();
             luggageField.Text = luggage.ToString();
-            if (coffee)
+            if (goodDocument)
             {
-                coffeeField.Text = "yes";
+                goodDocumentField.Text = "yes";
             }
-            else if (!coffee)
+            else if (!goodDocument)
             {
-                coffeeField.Text = "no";
+                goodDocumentField.Text = "no";
             }
             else
             {
-                throw new NotImplementedException("coffee value undefined");
+                throw new NotImplementedException("document value undefined");
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            packDest = (Destination)comboBox3.SelectedValue;
             weight = Convert.ToInt32(weightInput.Value);
             if (weight > 0)
             {
-                weightWarningText.Visible = false;
+                weightWarningField.Visible = false;
             }
             else
             {
-                weightWarningText.Visible = true;
+                weightWarningField.Visible = true;
                 return;
             }
 
-            price = packageDelivery.calculateDeliveryPrice(packDest, weight);
-            price = Math.Round(price, 2);
-
-            packDestField.Text = packDest.ToString();
+            packageDelivery.setWeight(weight);
+            deliveryPrice = packageDelivery.calculatePrice();
+            
             weightField.Text = weight.ToString();
-            packPriceField.Text = price.ToString();
+            deliveryPriceField.Text = deliveryPrice.ToString();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -144,6 +138,21 @@ namespace PSP_pirma_st
         }
 
         private void textBox18_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox12_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox8_TextChanged(object sender, EventArgs e)
         {
 
         }

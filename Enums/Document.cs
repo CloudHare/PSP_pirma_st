@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace PSP_pirma_st.Enums
 {
-    enum Destination
+    enum Document
     {
-        Rome,
-        Boston
+        IDCard,
+        Passport
     }
 }

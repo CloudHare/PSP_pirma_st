@@ -9,6 +9,8 @@ namespace PSP_pirma_st
 {
     interface DestinationStrategy
     {
-        double calculatePrice(Destination dest);
+        double calculatePrice();
+
+        bool goodDocument(Document doc);
     }
 }

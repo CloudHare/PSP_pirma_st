@@ -8,21 +8,14 @@ using System.Threading.Tasks;
 namespace PSP_pirma_st
 {
     class EconomyClassStrategy : FlightClassStrategy
-
     {
-        public int calculateIncludedLuggage(FlightClass flightClass)
-        {
-            return 15;
-        }
-
-        public double calculatePrice(FlightClass flightClass)
+        public double calculatePrice()
         {
             return 1.22;
         }
-
-        public bool isCoffeeIncluded(FlightClass flightClass)
+        public int calculateIncludedLuggage()
         {
-            return false;
+            return 15;
         }
     }
 }

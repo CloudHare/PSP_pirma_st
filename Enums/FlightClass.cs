@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PSP_pirma_st.Enums
 {
-    public enum FlightClass
+    enum FlightClass
     {
         Business,
         Economy

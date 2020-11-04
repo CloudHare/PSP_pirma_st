@@ -46,11 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BostonPriceStrategy.cs" />
+    <Compile Include="BostonStrategy.cs" />
     <Compile Include="BusinessClassStrategy.cs" />
     <Compile Include="DestinationStrategy.cs" />
     <Compile Include="EconomyClassStrategy.cs" />
     <Compile Include="Enums\Destination.cs" />
+    <Compile Include="Enums\Document.cs" />
     <Compile Include="Enums\FlightClass.cs" />
     <Compile Include="FlightTicket.cs" />
     <Compile Include="Form1.cs">
@@ -63,7 +64,7 @@
     <Compile Include="PackageDelivery.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RomePriceStrategy.cs" />
+    <Compile Include="RomeStrategy.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

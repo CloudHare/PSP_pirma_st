@@ -9,77 +9,79 @@ namespace PSP_pirma_st
 {
     class FlightTicket
     {
-        DestinationStrategy destStrategy;
-        FlightClassStrategy classStrategy;
+        DestinationStrategy destSt;
+        FlightClassStrategy classSt;
+
+        public FlightTicket()
+        {
+            // Change these for other variations
+            destSt = new BostonStrategy();
+            classSt = new EconomyClassStrategy();
+        }
         
-        public double calculatePrice(Destination dest, FlightClass flightClass)
+        public double calculatePrice()
         {
             double destPrice;
             double classPrice;
+            double fullPrice;
 
-            setDestination(dest);
+            destPrice = destSt.calculatePrice();
+            classPrice = classSt.calculatePrice();
+            fullPrice = destPrice * classPrice;
+            fullPrice = Math.Round(fullPrice, 2);
 
-            setFlightClass(flightClass);
-
-            destPrice = destStrategy.calculatePrice(dest);
-            classPrice = classStrategy.calculatePrice(flightClass);
-
-            return (destPrice * classPrice);
+            return fullPrice;
         }
     
-        public int calculateLuggage(FlightClass flightClass)
+        public int calculateLuggage()
         {
             int luggage;
 
-            setFlightClass(flightClass);
-
-            luggage = classStrategy.calculateIncludedLuggage(flightClass);
+            luggage = classSt.calculateIncludedLuggage();
 
             return luggage;
         }
 
-        public bool isCoffeeIncluded(FlightClass flightClass)
+        public bool goodDocument(Document doc)
         {
-            bool coffee;
+            bool goodDoc;
 
-            setFlightClass(flightClass);
+            goodDoc = destSt.goodDocument(doc);
 
-            coffee = classStrategy.isCoffeeIncluded(flightClass);
-
-            return coffee;
+            return goodDoc;
         }
 
-        private void setFlightClass(FlightClass fc)
+        // For the sake of a nicer interface, has nothing to do with logic
+        // Should I delete this and not display Destination and FlightClass in the interface?
+        public Destination getDestination()
         {
-            switch (fc)
+            if (destSt.GetType() == typeof(RomeStrategy))
             {
-                case FlightClass.Business:
-                    classStrategy = new BusinessClassStrategy();
-                    break;
-
-                case FlightClass.Economy:
-                    classStrategy = new EconomyClassStrategy();
-                    break;
-
-                default:
-                    throw new NotImplementedException("Unknown flight class");
+                return Destination.Rome;
+            }
+            else if (destSt.GetType() == typeof(BostonStrategy))
+            {
+                return Destination.Boston;
+            }
+            else
+            {
+                throw new NotImplementedException("Unknown destination");
             }
         }
 
-        private void setDestination(Destination dest)
+        public FlightClass getFlightClass()
         {
-            switch (dest)
+            if (classSt.GetType() == typeof(BusinessClassStrategy))
             {
-                case Destination.Boston:
-                    destStrategy = new BostonPriceStrategy();
-                    break;
-
-                case Destination.Rome:
-                    destStrategy = new RomePriceStrategy();
-                    break;
-
-                default:
-                    throw new NotImplementedException("Unknown destination");
+                return FlightClass.Business;
+            }
+            else if (classSt.GetType() == typeof(EconomyClassStrategy))
+            {
+                return FlightClass.Economy;
+            }
+            else
+            {
+                throw new NotImplementedException("Unknown flight class");
             }
         }
     }

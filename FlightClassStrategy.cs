@@ -9,10 +9,8 @@ namespace PSP_pirma_st
 {
     interface FlightClassStrategy
     {
-        double calculatePrice(FlightClass flightClass);
+        double calculatePrice();
 
-        int calculateIncludedLuggage(FlightClass flightClass);
-
-        bool isCoffeeIncluded(FlightClass flightClass);
+        int calculateIncludedLuggage();
     }
 }

@@ -9,35 +9,44 @@ namespace PSP_pirma_st
 {
     class PackageDelivery
     {
-        DestinationStrategy destStrategy;
+        DestinationStrategy destSt;
         int weight;
 
-        public double calculateDeliveryPrice(Destination dest, int weight)
+        public PackageDelivery()
+        {
+            // Change this for other variations
+            destSt = new BostonStrategy();
+        }
+
+        public double calculatePrice()
         {
             double price;
 
-            setDestination(dest);
-
-            price = destStrategy.calculatePrice(dest);
-            price = price * 0.02 * weight;
+            price = destSt.calculatePrice();
+            price = price * this.weight * 0.02;
+            price = Math.Round(price, 2);
 
             return price;
         }
 
-        private void setDestination(Destination dest)
+        public void setWeight(int weight)
         {
-            switch (dest)
+            this.weight = weight;
+        }
+
+        public Destination getDestination()
+        {
+            if (destSt.GetType() == typeof(RomeStrategy))
             {
-                case Destination.Boston:
-                    destStrategy = new BostonPriceStrategy();
-                    break;
-
-                case Destination.Rome:
-                    destStrategy = new RomePriceStrategy();
-                    break;
-
-                default:
-                    throw new NotImplementedException("Unknown destination");
+                return Destination.Rome;
+            }
+            else if (destSt.GetType() == typeof(BostonStrategy))
+            {
+                return Destination.Boston;
+            }
+            else
+            {
+                throw new NotImplementedException("Unknown destination");
             }
         }
     }

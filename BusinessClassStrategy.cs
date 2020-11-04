@@ -9,19 +9,13 @@ namespace PSP_pirma_st
 {
     class BusinessClassStrategy : FlightClassStrategy
     {
-        public int calculateIncludedLuggage(FlightClass flightClass)
-        {
-            return 25;
-        }
-
-        public double calculatePrice(FlightClass flightClass)
+        public double calculatePrice()
         {
             return 2.11;
         }
-
-        public bool isCoffeeIncluded(FlightClass flightClass)
+        public int calculateIncludedLuggage()
         {
-            return true;
+            return 25;
         }
     }
 }
