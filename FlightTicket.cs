@@ -1,4 +1,5 @@
 ﻿using PSP_pirma_st.Enums;
+using PSP_pirma_st.Structs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,13 +13,22 @@ namespace PSP_pirma_st
         DestinationStrategy destSt;
         FlightClassStrategy classSt;
 
-        public FlightTicket()
+        public FlightTicket(DestinationStrategy destSt, FlightClassStrategy classSt)
         {
-            // Change these for other variations
-            destSt = new BostonStrategy();
-            classSt = new EconomyClassStrategy();
+            this.destSt = destSt;
+            this.classSt = classSt;
         }
-        
+
+        public FlightTicketData getTicket(Document doc)
+        {
+            FlightTicketData ftd = new FlightTicketData();
+            ftd.Price = calculatePrice();
+            ftd.Luggage = calculateLuggage();
+            ftd.GoodDoc = goodDocument(doc);
+
+            return ftd;
+        }
+
         public double calculatePrice()
         {
             double destPrice;

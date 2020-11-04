@@ -1,4 +1,5 @@
 ﻿using PSP_pirma_st.Enums;
+using PSP_pirma_st.Structs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,24 +12,24 @@ using System.Windows.Forms;
 
 namespace PSP_pirma_st
 {
-    public partial class Form1 : Form
+    public partial class Client : Form
     {
+        //DestinationStrategy flightDestSt;
+        //FlightClassStrategy flightClassSt;
         FlightTicket flightTicket;
         Document doc;
-        bool goodDocument;
-        int luggage;
-        double flightPrice;
+        FlightTicketData ftd;
 
         PackageDelivery packageDelivery;
         int weight;
         double deliveryPrice;
 
-        public Form1()
+        public Client()
         {
             InitializeComponent();
 
-            flightTicket = new FlightTicket();
-            packageDelivery = new PackageDelivery();
+            flightTicket = new FlightTicket(new BostonStrategy(), new BusinessClassStrategy());
+            packageDelivery = new PackageDelivery(new RomeStrategy());
 
             comboBox1.DataSource = Enum.GetValues(typeof(Document));
 
@@ -42,17 +43,15 @@ namespace PSP_pirma_st
         {
             doc = (Document)comboBox1.SelectedValue;
 
-            flightPrice = flightTicket.calculatePrice();
-            luggage = flightTicket.calculateLuggage();
-            goodDocument = flightTicket.goodDocument(doc);
+            ftd = flightTicket.getTicket(doc);
 
-            flightPriceField.Text = flightPrice.ToString();
-            luggageField.Text = luggage.ToString();
-            if (goodDocument)
+            flightPriceField.Text = ftd.Price.ToString();
+            luggageField.Text = ftd.Luggage.ToString();
+            if (ftd.GoodDoc)
             {
                 goodDocumentField.Text = "yes";
             }
-            else if (!goodDocument)
+            else if (!ftd.GoodDoc)
             {
                 goodDocumentField.Text = "no";
             }
@@ -75,8 +74,7 @@ namespace PSP_pirma_st
                 return;
             }
 
-            packageDelivery.setWeight(weight);
-            deliveryPrice = packageDelivery.calculatePrice();
+            deliveryPrice = packageDelivery.calculatePrice(weight);
             
             weightField.Text = weight.ToString();
             deliveryPriceField.Text = deliveryPrice.ToString();

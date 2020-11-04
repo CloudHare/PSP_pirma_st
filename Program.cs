@@ -16,7 +16,7 @@ namespace PSP_pirma_st
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Client());
         }
     }
 }

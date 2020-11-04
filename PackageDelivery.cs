@@ -10,30 +10,26 @@ namespace PSP_pirma_st
     class PackageDelivery
     {
         DestinationStrategy destSt;
-        int weight;
 
-        public PackageDelivery()
+        public PackageDelivery(DestinationStrategy destSt)
         {
             // Change this for other variations
-            destSt = new BostonStrategy();
+            this.destSt = destSt;
         }
 
-        public double calculatePrice()
+        public double calculatePrice(int weight)
         {
             double price;
 
             price = destSt.calculatePrice();
-            price = price * this.weight * 0.02;
+            price = price * weight * 0.02;
             price = Math.Round(price, 2);
 
             return price;
         }
 
-        public void setWeight(int weight)
-        {
-            this.weight = weight;
-        }
-
+        // For the sake of a nicer interface, has nothing to do with logic
+        // Should I delete this and not display Destination in the interface?
         public Destination getDestination()
         {
             if (destSt.GetType() == typeof(RomeStrategy))
