@@ -13,6 +13,6 @@ namespace PSP_pirma_st
 
         bool goodDocument(Document doc);
 
-        Destination getDestination();
+        string getDestination();
     }
 }

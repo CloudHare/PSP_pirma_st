@@ -13,6 +13,6 @@ namespace PSP_pirma_st
 
         int calculateIncludedLuggage();
 
-        FlightClass getFlightClass();
+        string getFlightClass();
     }
 }

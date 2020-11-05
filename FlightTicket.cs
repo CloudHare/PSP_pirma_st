@@ -61,12 +61,12 @@ namespace PSP_pirma_st
             return goodDoc;
         }
 
-        public Destination getDestination()
+        public string getDestination()
         {
             return destSt.getDestination();
         }
 
-        public FlightClass getFlightClass()
+        public string getFlightClass()
         {
             return classSt.getFlightClass();
         }

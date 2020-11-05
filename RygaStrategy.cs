@@ -25,9 +25,9 @@ namespace PSP_pirma_st
             }
         }
 
-        public Destination getDestination()
+        public string getDestination()
         {
-            return Destination.Ryga;
+            return "Ryga";
         }
     }
 }

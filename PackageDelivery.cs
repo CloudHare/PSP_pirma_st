@@ -27,7 +27,7 @@ namespace PSP_pirma_st
             return price;
         }
 
-        public Destination getDestination()
+        public string getDestination()
         {
             return destSt.getDestination();
         }

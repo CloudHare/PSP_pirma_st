@@ -50,9 +50,7 @@
     <Compile Include="BusinessClassStrategy.cs" />
     <Compile Include="DestinationStrategy.cs" />
     <Compile Include="EconomyClassStrategy.cs" />
-    <Compile Include="Enums\Destination.cs" />
     <Compile Include="Enums\Document.cs" />
-    <Compile Include="Enums\FlightClass.cs" />
     <Compile Include="FlightTicket.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

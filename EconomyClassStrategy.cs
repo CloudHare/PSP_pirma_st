@@ -18,9 +18,9 @@ namespace PSP_pirma_st
             return 15;
         }
 
-        public FlightClass getFlightClass()
+        public string getFlightClass()
         {
-            return FlightClass.Economy;
+            return "Economy";
         }
     }
 }
