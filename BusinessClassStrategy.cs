@@ -17,5 +17,10 @@ namespace PSP_pirma_st
         {
             return 25;
         }
+
+        public FlightClass getFlightClass()
+        {
+            return FlightClass.Business;
+        }
     }
 }

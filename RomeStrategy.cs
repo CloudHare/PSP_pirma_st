@@ -28,5 +28,10 @@ namespace PSP_pirma_st
                     throw new NotImplementedException("Unknown document"); 
             }
         }
+
+        public Destination getDestination()
+        {
+            return Destination.Rome;
+        }
     }
 }

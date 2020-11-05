@@ -61,38 +61,14 @@ namespace PSP_pirma_st
             return goodDoc;
         }
 
-        // For the sake of a nicer interface, has nothing to do with logic
-        // Should I delete this and not display Destination and FlightClass in the interface?
         public Destination getDestination()
         {
-            if (destSt.GetType() == typeof(RomeStrategy))
-            {
-                return Destination.Rome;
-            }
-            else if (destSt.GetType() == typeof(BostonStrategy))
-            {
-                return Destination.Boston;
-            }
-            else
-            {
-                throw new NotImplementedException("Unknown destination");
-            }
+            return destSt.getDestination();
         }
 
         public FlightClass getFlightClass()
         {
-            if (classSt.GetType() == typeof(BusinessClassStrategy))
-            {
-                return FlightClass.Business;
-            }
-            else if (classSt.GetType() == typeof(EconomyClassStrategy))
-            {
-                return FlightClass.Economy;
-            }
-            else
-            {
-                throw new NotImplementedException("Unknown flight class");
-            }
+            return classSt.getFlightClass();
         }
     }
 }

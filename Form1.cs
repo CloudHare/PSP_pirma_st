@@ -14,8 +14,6 @@ namespace PSP_pirma_st
 {
     public partial class Client : Form
     {
-        //DestinationStrategy flightDestSt;
-        //FlightClassStrategy flightClassSt;
         FlightTicket flightTicket;
         Document doc;
         FlightTicketData ftd;
@@ -28,12 +26,11 @@ namespace PSP_pirma_st
         {
             InitializeComponent();
 
-            flightTicket = new FlightTicket(new BostonStrategy(), new BusinessClassStrategy());
-            packageDelivery = new PackageDelivery(new RomeStrategy());
+            flightTicket = new FlightTicket(new RygaStrategy(), new EconomyClassStrategy());
+            packageDelivery = new PackageDelivery(new RygaStrategy());
 
             comboBox1.DataSource = Enum.GetValues(typeof(Document));
 
-            // Should I remove these?
             flightDestField.Text = flightTicket.getDestination().ToString();
             flightClassField.Text = flightTicket.getFlightClass().ToString();
             deliveryDestField.Text = packageDelivery.getDestination().ToString();

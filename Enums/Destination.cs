@@ -9,6 +9,7 @@ namespace PSP_pirma_st.Enums
     enum Destination
     {
         Rome,
-        Boston
+        Boston,
+        Ryga
     }
 }

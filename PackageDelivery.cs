@@ -13,7 +13,6 @@ namespace PSP_pirma_st
 
         public PackageDelivery(DestinationStrategy destSt)
         {
-            // Change this for other variations
             this.destSt = destSt;
         }
 
@@ -28,22 +27,9 @@ namespace PSP_pirma_st
             return price;
         }
 
-        // For the sake of a nicer interface, has nothing to do with logic
-        // Should I delete this and not display Destination in the interface?
         public Destination getDestination()
         {
-            if (destSt.GetType() == typeof(RomeStrategy))
-            {
-                return Destination.Rome;
-            }
-            else if (destSt.GetType() == typeof(BostonStrategy))
-            {
-                return Destination.Boston;
-            }
-            else
-            {
-                throw new NotImplementedException("Unknown destination");
-            }
+            return destSt.getDestination();
         }
     }
 }

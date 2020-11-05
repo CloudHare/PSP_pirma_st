@@ -12,5 +12,7 @@ namespace PSP_pirma_st
         double calculatePrice();
 
         int calculateIncludedLuggage();
+
+        FlightClass getFlightClass();
     }
 }

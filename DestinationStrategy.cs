@@ -12,5 +12,7 @@ namespace PSP_pirma_st
         double calculatePrice();
 
         bool goodDocument(Document doc);
+
+        Destination getDestination();
     }
 }

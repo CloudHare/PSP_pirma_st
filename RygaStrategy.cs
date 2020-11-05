@@ -1,17 +1,13 @@
 ﻿using PSP_pirma_st.Enums;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PSP_pirma_st
 {
-    class BostonStrategy : DestinationStrategy
+    class RygaStrategy : DestinationStrategy
     {
         public double calculatePrice()
         {
-            return 230.12;
+            return 20.01;
         }
 
         public bool goodDocument(Document doc)
@@ -19,7 +15,7 @@ namespace PSP_pirma_st
             switch (doc)
             {
                 case Document.IDCard:
-                    return false;
+                    return true;
 
                 case Document.Passport:
                     return true;
@@ -31,7 +27,7 @@ namespace PSP_pirma_st
 
         public Destination getDestination()
         {
-            return Destination.Boston;
+            return Destination.Ryga;
         }
     }
 }
