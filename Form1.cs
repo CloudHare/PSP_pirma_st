@@ -26,8 +26,8 @@ namespace PSP_pirma_st
         {
             InitializeComponent();
 
-            flightTicket = new FlightTicket(new RygaStrategy(), new EconomyClassStrategy());
-            packageDelivery = new PackageDelivery(new RygaStrategy());
+            flightTicket = new FlightTicket(new BostonStrategy(), new EconomyClassStrategy());
+            packageDelivery = new PackageDelivery(new RomeStrategy());
 
             comboBox1.DataSource = Enum.GetValues(typeof(Document));
 
